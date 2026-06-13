@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "sku": "WW-0001",
+    "name": "Night gown",
+    "description": "Lovely sleeveless nightgown that's combed for extra softness and comfort. Made with a full, flouncy skirt for twirly bedtime fun!",
+    "price": 3700,
+    "image": "\ud83d\uddbc\ufe0f Product Image",
+    "category": "Women's Wear",
+    "attributes": {
+      "Brand": "hannaandersson",
+      "Size": "XL",
+      "Color": "lime green",
+      "Material": "cotton",
+      "Style": "night short dress"
+    }
+  }
+]

@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+uploads/
+git add .
+git commit -m "Initial commit - Nash Fashion store"
