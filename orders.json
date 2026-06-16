@@ -1,54 +1,23 @@
 [
   {
-    "ref": "MOMO-TEST-1781281938",
+    "ref": "MOMO-TEST-1781409982",
     "name": "Gladious Mbah",
-    "phone": "237677063461",
-    "address": "Ekouno tab",
+    "phone": "237677063466",
+    "address": "Yaounde 2",
     "payment_method": "MTN Mobile Money",
     "items": [
       {
-        "name": "baleries",
-        "price": 4500,
+        "name": "Calvin Klein Men's Slim High Stretch Jeans - 36 / Black",
+        "price": 15000,
+        "product_id": 1,
         "qty": 1,
-        "subtotal": 4500
-      },
-      {
-        "name": "Mary Jane",
-        "price": 6500,
-        "qty": 1,
-        "subtotal": 6500
+        "sku": "MW-0001-36-Black",
+        "subtotal": 15000,
+        "variant_key": "36-Black"
       }
     ],
-    "total": 11000,
+    "total": 15000,
     "status": "Paid",
-    "date": "2026-06-12 12:32:25"
-  },
-  {
-    "ref": "MOMO-TEST-1781283906",
-    "name": "Gladious Mbah",
-    "phone": "237677063461",
-    "address": "Ekouno tab",
-    "payment_method": "MTN Mobile Money",
-    "items": [
-      {
-        "name": "baleries",
-        "price": 4500,
-        "product_id": 8,
-        "qty": 1,
-        "sku": "N/A",
-        "subtotal": 4500
-      },
-      {
-        "name": "Mary Jane",
-        "price": 6500,
-        "product_id": 9,
-        "qty": 1,
-        "sku": "N/A",
-        "subtotal": 6500
-      }
-    ],
-    "total": 11000,
-    "status": "Paid",
-    "date": "2026-06-12 13:05:19"
+    "date": "2026-06-14 00:06:26"
   }
 ]

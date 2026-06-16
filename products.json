@@ -1,18 +1,95 @@
 [
   {
     "id": 1,
-    "sku": "WW-0001",
-    "name": "Night gown",
-    "description": "Lovely sleeveless nightgown that's combed for extra softness and comfort. Made with a full, flouncy skirt for twirly bedtime fun!",
-    "price": 3700,
-    "image": "\ud83d\uddbc\ufe0f Product Image",
-    "category": "Women's Wear",
+    "sku": "MW-0001",
+    "name": "Calvin Klein Men's Slim High Stretch Jeans",
+    "description": "Extra soft cotton stretch denim for a flexible feel and all-day comfort\r\nSlim fit: sits below waist, slim leg\r\nCare for your denim sustainably - wash sparingly, inside out in cold water, hang dry\r\nMetal logo hardware and an iconic back waist logo patch\r\nSignature omega topstitching at the back pockets",
+    "price": 6500,
+    "images": [
+      "uploads/1_1_1781412180_1.jpg",
+      "uploads/1_2_1781412180_2.jpg",
+      "uploads/1_3_1781412180_3.jpg",
+      "uploads/1_4_1781412180_4.jpg",
+      "uploads/1_5_1781412180_5.jpg"
+    ],
+    "category": "Men's Wear",
     "attributes": {
-      "Brand": "hannaandersson",
-      "Size": "XL",
-      "Color": "lime green",
-      "Material": "cotton",
-      "Style": "night short dress"
-    }
+      "Brand": "CK",
+      "Style": "Straight Jean"
+    },
+    "variants": [
+      {
+        "key": "36-Blue",
+        "sku": "MW-0001-36-Blue",
+        "attrs": {
+          "Size": "36",
+          "Color": "Blue"
+        },
+        "price": 6500
+      },
+      {
+        "key": "34-Black",
+        "sku": "MW-0001-34-Black",
+        "attrs": {
+          "Size": "34",
+          "Color": "Black"
+        },
+        "price": 6500
+      },
+      {
+        "key": "38-Wash blue",
+        "sku": "MW-0001-38-Wash blue",
+        "attrs": {
+          "Size": "38",
+          "Color": "Wash blue"
+        },
+        "price": 6500
+      },
+      {
+        "key": "36-washed",
+        "sku": "MW-0001-36-washed",
+        "attrs": {
+          "Size": "36",
+          "Color": "washed"
+        },
+        "price": 6500
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "sku": "CW-0002",
+    "name": "baleries",
+    "description": "Low school shoes for kids",
+    "price": 2500,
+    "images": [
+      "uploads/2_1_1781412568_6077772-brown.webp",
+      "uploads/2_2_1781412568_Balleries.webp"
+    ],
+    "category": "Children's Wear",
+    "attributes": {
+      "Brand": "Balleries",
+      "Age Group": "5-12"
+    },
+    "variants": [
+      {
+        "key": "24-Brown",
+        "sku": "CW-0002-24-Brown",
+        "attrs": {
+          "Size": "24",
+          "Color": "Brown"
+        },
+        "price": 2500
+      },
+      {
+        "key": "26-Black",
+        "sku": "CW-0002-26-Black",
+        "attrs": {
+          "Size": "26",
+          "Color": "Black"
+        },
+        "price": 2500
+      }
+    ]
   }
 ]

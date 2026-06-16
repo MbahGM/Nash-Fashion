@@ -1,1 +1,72 @@
-[]
+[
+  {
+    "id": 1,
+    "product_id": 1,
+    "variant_key": "36-Blue",
+    "quantity_ordered": 6,
+    "quantity_received": 6,
+    "unit_cost": 6500,
+    "date_purchased": "2026-06-10",
+    "date_received": "2026-06-13",
+    "supplier_name": "Jeo Fashion llc",
+    "supplier_phone": "23766045451",
+    "supplier_address": "Guzang Market",
+    "status": "Received"
+  },
+  {
+    "id": 2,
+    "product_id": 1,
+    "variant_key": "34-Black",
+    "quantity_ordered": 16,
+    "quantity_received": 6,
+    "unit_cost": 6500,
+    "date_purchased": "2026-06-10",
+    "date_received": "2026-06-13",
+    "supplier_name": "Jeo Fashion llc",
+    "supplier_phone": "23766045451",
+    "supplier_address": "Guzang Market",
+    "status": "Partial"
+  },
+  {
+    "id": 3,
+    "product_id": 1,
+    "variant_key": "36-washed",
+    "quantity_ordered": 6,
+    "quantity_received": 4,
+    "unit_cost": 6500,
+    "date_purchased": "2026-06-10",
+    "date_received": "2026-06-13",
+    "supplier_name": "Jeo Fashion llc",
+    "supplier_phone": "23766045451",
+    "supplier_address": "Guzang Market",
+    "status": "Partial"
+  },
+  {
+    "id": 4,
+    "product_id": 2,
+    "variant_key": "24-Brown",
+    "quantity_ordered": 12,
+    "quantity_received": 12,
+    "unit_cost": 2500,
+    "date_purchased": "2026-06-10",
+    "date_received": "2026-06-13",
+    "supplier_name": "Divine enterprise ltd",
+    "supplier_phone": "237666666000",
+    "supplier_address": "Douala Market",
+    "status": "Received"
+  },
+  {
+    "id": 5,
+    "product_id": 2,
+    "variant_key": "26-Black",
+    "quantity_ordered": 6,
+    "quantity_received": 6,
+    "unit_cost": 2500,
+    "date_purchased": "2026-06-11",
+    "date_received": "2026-06-13",
+    "supplier_name": "Divine enterprise ltd",
+    "supplier_phone": "237666666000",
+    "supplier_address": "Douala Market",
+    "status": "Received"
+  }
+]
