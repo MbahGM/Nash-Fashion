@@ -417,9 +417,7 @@ def report_customers():
         rank += 1
         rows += f'<tr class="border-b"><td class="py-2">#{rank}</td><td class="py-2 font-medium">{c["name"]}</td><td class="py-2">{c["phone"]}</td><td class="py-2">{c["orders"]}</td><td class="py-2">{c["total"]:,} XAF</td></tr>'
     return f'''<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Top Customers</title><script src="https://cdn.tailwindcss.com"></script></head><body class="bg-gray-50">{admin_header("Reports")}<main class="max-w-5xl mx-auto p-4"><a href="/admin/reports" class="text-rose-600 text-sm">&larr; Back</a><h2 class="text-xl font-semibold my-4">👥 Top Customers</h2><div class="bg-white rounded-lg shadow overflow-hidden"><table class="w-full text-sm"><thead><tr class="border-b text-left bg-gray-50"><th class="py-3 px-4">Rank</th><th class="py-3 px-4">Name</th><th class="py-3 px-4">Phone</th><th class="py-3 px-4">Orders</th><th class="py-3 px-4">Total Spent</th></tr></thead><tbody>{rows or '<tr><td colspan="5" class="py-4 text-center text-gray-400">No customers yet</td></tr>'}</tbody></table></div></main></body></html>'''
-
-
-# ─── Products, Inventory, Orders (abbreviated - keeping same as before) ───
+# ─── Products ───
 @app.route('/admin/products')
 def admin_products():
     if not is_admin(): return redirect('/admin')
@@ -431,8 +429,7 @@ def admin_products():
         s = sum(get_stock_level(p['id'],v.get('key','')) for v in p.get('variants',[])) if p.get('variants') else get_stock_level(p['id'])
         sc = 'text-green-600' if s>5 else ('text-orange-500' if s>0 else 'text-red-600')
         rows += f'''<tr class="border-b"><td class="py-3 px-4">{ih}</td><td class="py-3 px-4 text-xs font-mono">{p.get('sku','N/A')}</td><td class="py-3 px-4 font-medium">{p['name']}</td><td class="py-3 px-4"><span class="text-xs bg-gray-100 px-2 py-1 rounded">{p.get('category','Other')}</span></td><td class="py-3 px-4">{p['price']:,} XAF</td><td class="py-3 px-4 text-xs">{len(p.get('variants',[]))} var / {len(imgs)} img</td><td class="py-3 px-4 font-medium {sc}">{s}</td><td class="py-3 px-4"><a href="/admin/products/edit/{p['id']}" class="text-blue-600 mr-2 text-xs">Edit</a><a href="/admin/products/{p['id']}/barcode" class="text-purple-600 mr-2 text-xs">🏷️</a><a href="/admin/products/delete/{p['id']}" class="text-red-600 text-xs" onclick="return confirm('Delete?')">Del</a></td></tr>'''
-    return f'''<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Products</title><script src="https://cdn.tailwindcss.com"></script></head><body class="bg-gray-50">{admin_header("Products")}<main class="max-w-6xl mx-auto p-4"><div class="flex justify-between mb-4"><h2 class="text-xl font-semibold">Products ({len(products)})</h2><a href="/admin/products/add" class="bg-rose-600 text-white px-4 py-2 rounded">+ Add</a></div><div class="bg-white rounded-lg shadow overflow-x-auto"><table class="w-full text-sm"><thead><tr class="border-b text-left bg-gray-50"><th class="py-3 px-4">Img</th><th class="py-3 px-4">SKU</th><th class="py-3 px-4">Name</th><th class="py-3 px-4">Cat</th><th class="py-3 px-4">Price</th><th class="py-3 px-4">Details</th><th class="py-3 px-4">Stock</th><th class="py-3 px-4">Actions</th></tr></thead><tbody>{rows or '<tr><td colspan="8" class="py-4 text-center text-gray-400">No products</td></tr>'}</tbody></table></div></main></body></html>'''
-
+    return f'''<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Products</title><script src="https://cdn.tailwindcss.com"></script></head><body class="bg-gray-50">{admin_header("Products")}<main class="max-w-6xl mx-auto p-4"><div class="flex justify-between mb-4"><h2 class="text-xl font-semibold">Products ({len(products)})</h2><div class="flex gap-2"><a href="/admin/products/bulk" class="bg-blue-600 text-white px-4 py-2 rounded text-sm">CSV Bulk</a><a href="/admin/products/add" class="bg-rose-600 text-white px-4 py-2 rounded">+ Add</a></div></div><div class="bg-white rounded-lg shadow overflow-x-auto"><table class="w-full text-sm"><thead><tr class="border-b text-left bg-gray-50"><th class="py-3 px-4">Img</th><th class="py-3 px-4">SKU</th><th class="py-3 px-4">Name</th><th class="py-3 px-4">Cat</th><th class="py-3 px-4">Price</th><th class="py-3 px-4">Details</th><th class="py-3 px-4">Stock</th><th class="py-3 px-4">Actions</th></tr></thead><tbody>{rows or '<tr><td colspan="8" class="py-4 text-center text-gray-400">No products</td></tr>'}</tbody></table></div></main></body></html>'''
 @app.route('/admin/products/add')
 def admin_add_product_form():
     if not is_admin(): return redirect('/admin')
@@ -510,7 +507,131 @@ def admin_edit_product(pid):
             break
     save_products(products)
     return redirect('/admin/products')
-
+csv_content = "name,category,description,base_price,image_url,brand,style,size,color,variant_price\n"
+csv_content += 'CK Jean,Men\'s Wear,Regular fit blue jeans,15000,https://example.com/jean.jpg,Calvin Klein,Regular,"32,34,36,38","Blue,Brown","15000,15000,14000,14000"\n'
+csv_content += 'Summer Dress,Women\'s Wear,Light floral dress,12000,https://example.com/dress.jpg,Zara,Casual,"S,M,L","Red,White,Black","12000,12000,12000"\n'
+@app.route('/admin/products/template')
+def download_template():
+    if not is_admin(): return redirect('/admin')
+    csv_content = "name,category,description,base_price,image_url,brand,style,size,color,variant_price\n"
+    csv_content += 'CK Jean,Men\'s Wear,Regular fit blue jeans,15000,https://example.com/jean.jpg,Calvin Klein,Regular,"32,34,36,38","Blue,Brown","15000,15000,14000,14000"\n'
+    csv_content += 'Summer Dress,Women\'s Wear,Light floral dress,12000,https://example.com/dress.jpg,Zara,Casual,"S,M,L","Red,White,Black","12000,12000,12000"\n'
+    from flask import Response
+    return Response(csv_content, mimetype='text/csv', headers={"Content-Disposition": "attachment;filename=nash_fashion_template.csv"})
+@app.route('/admin/products/bulk', methods=['GET', 'POST'])
+def admin_bulk_upload():
+    if not is_admin(): return redirect('/admin')
+    result = ""
+    if request.method == 'POST':
+        file = request.files.get('csv_file')
+        if not file or not file.filename:
+            result = '<p class="text-red-500 text-sm">Please select a CSV file.</p>'
+        elif not file.filename.endswith('.csv'):
+            result = '<p class="text-red-500 text-sm">Only .csv files allowed.</p>'
+        else:
+            import io, csv
+            stream = io.StringIO(file.stream.read().decode("UTF8"), newline=None)
+            reader = csv.DictReader(stream)
+            products = load_products()
+            next_id = max([p['id'] for p in products], default=0) + 1
+            created = 0
+            errors = []
+            for row_num, row in enumerate(reader, start=2):
+                name = row.get('name', '').strip()
+                category = row.get('category', '').strip()
+                base_price_str = row.get('base_price', '0').strip()
+                if not name:
+                    errors.append(f'Row {row_num}: Missing product name')
+                    continue
+                if category not in CATEGORIES:
+                    errors.append(f'Row {row_num}: Invalid category "{category}"')
+                    continue
+                try:
+                    base_price = int(base_price_str)
+                except:
+                    errors.append(f'Row {row_num}: Invalid base price')
+                    continue
+                
+                # Attributes
+                attr_keys = CATEGORIES[category]['attributes']
+                attrs = {}
+                for k in attr_keys:
+                    attrs[k] = row.get(k.lower(), '').strip()
+                
+                # Variants
+                variant_fields = CATEGORIES[category]['variant_fields']
+                sizes_str = row.get('size', '').strip()
+                colors_str = row.get('color', '').strip()
+                variant_prices_str = row.get('variant_price', '').strip()
+                
+                variants = []
+                if variant_fields and sizes_str:
+                    sizes = [s.strip() for s in sizes_str.split(',') if s.strip()]
+                    colors = [c.strip() for c in colors_str.split(',') if c.strip()] if 'Color' in variant_fields else ['']
+                    vprices = [int(p.strip()) for p in variant_prices_str.split(',') if p.strip()] if variant_prices_str else []
+                    
+                    vi = 0
+                    for size in sizes:
+                        for color in colors:
+                            vattrs = {}
+                            if 'Size' in variant_fields:
+                                vattrs['Size'] = size
+                            if 'Color' in variant_fields and color:
+                                vattrs['Color'] = color
+                            vkey = "-".join(v for v in [size, color] if v)
+                            vprice = vprices[vi] if vi < len(vprices) else base_price
+                            variants.append({
+                                "key": vkey,
+                                "sku": generate_sku(category, next_id, vkey),
+                                "attrs": vattrs,
+                                "price": vprice
+                            })
+                            vi += 1
+                
+                products.append({
+                    "id": next_id,
+                    "sku": generate_sku(category, next_id),
+                    "name": name,
+                    "description": row.get('description', '').strip(),
+                    "price": base_price,
+                    "images": [row.get('image_url', '').strip()] if row.get('image_url', '').strip() else [],
+                    "category": category,
+                    "attributes": attrs,
+                    "variants": variants
+                })
+                next_id += 1
+                created += 1
+            
+            save_products(products)
+            result = f'<p class="text-green-600 font-medium">✅ {created} products created successfully!</p>'
+            if errors:
+                result += '<div class="text-red-500 text-sm mt-2">' + '<br>'.join(errors) + '</div>'
+    
+    return f'''<!DOCTYPE html><html<h2 class="text-xl font-semibold my-4">CSV Bulk Upload Products</h2>
+    <div class="bg-white rounded-lg shadow p-6 mb-4">
+    <h3 class="font-semibold mb-2">Step 1: Download Template</h3>
+    <p class="text-sm text-gray-500 mb-3">Download the CSV template and fill in your products in Excel.</p>
+    <a href="/admin/products/template" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 text-sm">📥 Download Template</a>
+    </div>
+    <div class="bg-white rounded-lg shadow p-6 mb-4">
+    <h3 class="font-semibold mb-2">Step 2: Upload Filled CSV</h3>
+    <form method="POST" enctype="multipart/form-data">
+    <input type="file" name="csv_file" accept=".csv" required class="w-full border rounded px-3 py-2 mb-3">
+    <button type="submit" class="bg-rose-600 text-white px-6 py-2 rounded hover:bg-rose-700">Upload & Import</button>
+    </form>
+    </div>
+    {result}
+    <div class="bg-yellow-50 border border-yellow-200 rounded p-4 mt-4">
+    <h3 class="font-semibold text-sm mb-2">📝 CSV Columns Guide</h3>
+    <table class="w-full text-xs"><thead><tr class="border-b"><th class="py-1 text-left">Column</th><th class="py-1 text-left">Required</th><th class="py-1 text-left">Example</th></tr></thead>
+    <tbody><tr class="border-b">><td class="py-1 font-medium">base_price</td><td class="py-1">Yes</td><td class="py-1">15000</td></tr>
+<tr class="border-b"><td class="py-1 font-medium">image_url</td><td class="py-1">No</td><td class="py-1">https://example.com/photo.jpg</td></tr>
+<tr class="border-b"><td class="py-1 font-medium">brand</td><td class="py-1">No</td><td class="py-1">Calvin Klein</td></tr>
+    <tr class="border-b"><td class="py-1 font-medium">style</td><td class="py-1">No</td><td class="py-1">Regular Jean</td></tr>
+    <tr class="border-b"><td class="py-1 font-medium">size</td><td class="py-1">No</td><td class="py-1">32,34,36,38</td></tr>
+    <tr class="border-b"><td class="py-1 font-medium">color</td><td class="py-1">No</td><td class="py-1">Blue,Brown</td></tr>
+    <tr><td class="py-1 font-medium">variant_price</td><td class="py-1">No</td><td class="py-1">15000,15000,14000,14000</td></tr></tbody></table>
+    </div></main></body></html>'''
 @app.route('/admin/products/delete/<int:pid>')
 def admin_delete_product(pid):
     if not is_admin(): return redirect('/admin')

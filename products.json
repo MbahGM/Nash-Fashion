@@ -91,5 +91,224 @@
         "price": 2500
       }
     ]
+  },
+  {
+    "id": 3,
+    "sku": "MW-0003",
+    "name": "CK Jean",
+    "description": "Regular fit jeans",
+    "price": 15000,
+    "images": [],
+    "category": "Men's Wear",
+    "attributes": {
+      "Brand": "Calvin Klein",
+      "Style": "Regular"
+    },
+    "variants": [
+      {
+        "key": "32-Blue",
+        "sku": "MW-0003-32-Blue",
+        "attrs": {
+          "Size": "32",
+          "Color": "Blue"
+        },
+        "price": 15
+      },
+      {
+        "key": "32-Black",
+        "sku": "MW-0003-32-Black",
+        "attrs": {
+          "Size": "32",
+          "Color": "Black"
+        },
+        "price": 0
+      },
+      {
+        "key": "32-washed blue",
+        "sku": "MW-0003-32-washed blue",
+        "attrs": {
+          "Size": "32",
+          "Color": "washed blue"
+        },
+        "price": 15000
+      },
+      {
+        "key": "34-Blue",
+        "sku": "MW-0003-34-Blue",
+        "attrs": {
+          "Size": "34",
+          "Color": "Blue"
+        },
+        "price": 15000
+      },
+      {
+        "key": "34-Black",
+        "sku": "MW-0003-34-Black",
+        "attrs": {
+          "Size": "34",
+          "Color": "Black"
+        },
+        "price": 15000
+      },
+      {
+        "key": "34-washed blue",
+        "sku": "MW-0003-34-washed blue",
+        "attrs": {
+          "Size": "34",
+          "Color": "washed blue"
+        },
+        "price": 15000
+      },
+      {
+        "key": "36-Blue",
+        "sku": "MW-0003-36-Blue",
+        "attrs": {
+          "Size": "36",
+          "Color": "Blue"
+        },
+        "price": 15000
+      },
+      {
+        "key": "36-Black",
+        "sku": "MW-0003-36-Black",
+        "attrs": {
+          "Size": "36",
+          "Color": "Black"
+        },
+        "price": 15000
+      },
+      {
+        "key": "36-washed blue",
+        "sku": "MW-0003-36-washed blue",
+        "attrs": {
+          "Size": "36",
+          "Color": "washed blue"
+        },
+        "price": 15000
+      },
+      {
+        "key": "38-Blue",
+        "sku": "MW-0003-38-Blue",
+        "attrs": {
+          "Size": "38",
+          "Color": "Blue"
+        },
+        "price": 15000
+      },
+      {
+        "key": "38-Black",
+        "sku": "MW-0003-38-Black",
+        "attrs": {
+          "Size": "38",
+          "Color": "Black"
+        },
+        "price": 15000
+      },
+      {
+        "key": "38-washed blue",
+        "sku": "MW-0003-38-washed blue",
+        "attrs": {
+          "Size": "38",
+          "Color": "washed blue"
+        },
+        "price": 15000
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "sku": "WW-0004",
+    "name": "Summer Dress",
+    "description": "Light floral dress",
+    "price": 12000,
+    "images": [],
+    "category": "Women's Wear",
+    "attributes": {
+      "Brand": "Zara",
+      "Style": "Casual"
+    },
+    "variants": [
+      {
+        "key": "S-Red",
+        "sku": "WW-0004-S-Red",
+        "attrs": {
+          "Size": "S",
+          "Color": "Red"
+        },
+        "price": 5
+      },
+      {
+        "key": "S-White",
+        "sku": "WW-0004-S-White",
+        "attrs": {
+          "Size": "S",
+          "Color": "White"
+        },
+        "price": 200
+      },
+      {
+        "key": "S-Black",
+        "sku": "WW-0004-S-Black",
+        "attrs": {
+          "Size": "S",
+          "Color": "Black"
+        },
+        "price": 12000
+      },
+      {
+        "key": "M-Red",
+        "sku": "WW-0004-M-Red",
+        "attrs": {
+          "Size": "M",
+          "Color": "Red"
+        },
+        "price": 12000
+      },
+      {
+        "key": "M-White",
+        "sku": "WW-0004-M-White",
+        "attrs": {
+          "Size": "M",
+          "Color": "White"
+        },
+        "price": 12000
+      },
+      {
+        "key": "M-Black",
+        "sku": "WW-0004-M-Black",
+        "attrs": {
+          "Size": "M",
+          "Color": "Black"
+        },
+        "price": 12000
+      },
+      {
+        "key": "L-Red",
+        "sku": "WW-0004-L-Red",
+        "attrs": {
+          "Size": "L",
+          "Color": "Red"
+        },
+        "price": 12000
+      },
+      {
+        "key": "L-White",
+        "sku": "WW-0004-L-White",
+        "attrs": {
+          "Size": "L",
+          "Color": "White"
+        },
+        "price": 12000
+      },
+      {
+        "key": "L-Black",
+        "sku": "WW-0004-L-Black",
+        "attrs": {
+          "Size": "L",
+          "Color": "Black"
+        },
+        "price": 12000
+      }
+    ]
   }
 ]
