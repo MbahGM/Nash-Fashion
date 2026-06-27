@@ -213,6 +213,11 @@
         },
         "price": 15000
       }
+    ],
+    "discount_type": "None",
+    "discount_value": 0,
+    "tags": [
+      "Clearance"
     ]
   },
   {

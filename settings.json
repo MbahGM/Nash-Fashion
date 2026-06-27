@@ -1,0 +1,12 @@
+{
+  "store_name": "Nash Fashion",
+  "store_whatsapp": "237677063461",
+  "free_delivery_threshold": 50000,
+  "delivery_zones": {
+    "Douala": 2000,
+    "Yaounde": 3000,
+    "Buea": 2500,
+    "Bamenda": 3000,
+    "Other": 5000
+  }
+}
