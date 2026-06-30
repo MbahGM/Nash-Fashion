@@ -293,6 +293,7 @@ def home():
     <!-- Footer -->
     <div class="text-center mt-8 py-4 border-t text-sm text-gray-500">
     <p>📞 WhatsApp: <a href="https://wa.me/{STORE_WHATSAPP}" class="text-green-600 hover:underline">{STORE_WHATSAPP}</a></p>
+    <div class="text-center my-4"><img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://nash-fashion.onrender.com" alt="Scan to visit Nash Fashion" class="mx-auto rounded shadow"><p class="text-xs text-gray-500 mt-1">📱 Scan to open our store</p></div>
     <p class="mt-1">{STORE_NAME} © 2026</p>
     </div>
     </main></body></html>'''
